@@ -1,4 +1,4 @@
-const PostModel = require("../models/post");
+const RecipeModel = require("../models/recipe");
 
 
 
@@ -24,11 +24,11 @@ function create(req, res) {
 
 async function index(req, res) {
   try {
-    // this populates the user when you find the posts
+    // this populates the user when you find the recipes
     // so you'll have access to the users information
-    // when you fetch teh posts
-    const posts = await PostModel.find({}).populate("user").exec();
-    res.status(200).json({ posts });
+    // when you fetch teh recipes
+    const recipes = await RecipeModel.find({}).populate("user").exec();
+    res.status(200).json({ recipes });
   } catch (err) {
     res.json({error: err})
   }

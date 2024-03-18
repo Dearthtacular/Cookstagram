@@ -8,15 +8,15 @@ const likesSchema = mongoose.Schema({
 });
 
 
-// One a user has many posts 
-// A post belongs to a User
-const postSchema = new mongoose.Schema({
+// One a user has many recipes 
+// A recipe belongs to a User
+const recipeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   photoUrl: String,
   caption: String,
-  // One Post has many likes, we are using embedding, because the likes will always be tied to the post, so no reason
+  // One recipe has many likes, we are using embedding, because the likes will always be tied to the recipe, so no reason
   // to make a likes model
   likes: [likesSchema],
 });
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Recipe", recipeSchema);
