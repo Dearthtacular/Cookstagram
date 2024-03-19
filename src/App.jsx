@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from 'react'
 import "./App.css";
 
@@ -24,6 +24,22 @@ function App() {
     console.log("happening");
     userService.logout();
     setUser(null);
+  }
+
+  if (!user) {
+    return (
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    );
   }
 
   return (
