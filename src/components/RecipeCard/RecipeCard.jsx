@@ -3,40 +3,39 @@ import { Link } from "react-router-dom";
 
 
 
-export default function RecipeCard({ post, isProfile, addLike, removeLike, loggedUser }) {
+export default function RecipeCard({ recipe, isProfile, addLike, removeLike, loggedUser }) {
 
-  // const likedIndex = post.likes.findIndex(like => like.username === loggedUser.username);
+  // const likedIndex = recipe.likes.findIndex(like => like.username === loggedUser.username);
   // const likeColor = likedIndex > -1 ? 'red' : 'grey';
-  // const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
+  // const clickHandler = likedIndex > -1 ? () => removeLike(recipe.likes[likedIndex]._id) : () => addLike(recipe._id)
 
   return (
 
     <Card>
       {isProfile ? null : (
         <Card.Content textAlign="left">
-          <Link to={`/${post.user.username}`}>
+          <Link to={`/${recipe.user.username}`}>
             <Image
               floated="left"
               size="large"
               avatar
               src={
-                post.user.photoUrl
-                  ? post.user.photoUrl
+                recipe.user.photoUrl
+                  ? recipe.user.photoUrl
                   : "https://react.semantic-ui.com/images/wireframe/square-image.png"
               }
             />
-            <Card.Header floated="right">{post.user.username}</Card.Header>
+            <Card.Header floated="right">{recipe.user.username}</Card.Header>
           </Link>
         </Card.Content>
       )}
 
-      <Image src={`${post.photoUrl}`} wrapped ui={false} />
+      <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
       <Card.Content>
-        <Card.Description>{post.caption}</Card.Description>
+        <Card.Description>{recipe.caption}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={"right"}>
-        <Icon name={"heart"} size="large" color={likeColor} onClick={clickHandler}/>
-        {post.likes.length} Likes
+        <Icon name={"heart"} size="large" />
       </Card.Content>
     </Card>
   );

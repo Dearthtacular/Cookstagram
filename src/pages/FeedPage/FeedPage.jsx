@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import RecipeFeed from '../../components/RecipeFeed/RecipeFeed';
 import Header from "../../components/Header/Header";
-import AddPostForm from "../../components/AddPostForm/AddPostForm";
+import AddPostForm from "../../components/AddRecipeForm/AddRecipeForm";
 
 import { Grid } from "semantic-ui-react";
 
@@ -27,7 +27,7 @@ export default function FeedPage({loggedUser, handleLogout}) {
 		// so express needs to have multer setup on this endpoint!
 		const response = await fetch('/api/recipes', {
 			method: 'POST',
-			body: postToSendToServer, // < No jsonify because we are sending a photo
+			body: recipeToSendToServer, // < No jsonify because we are sending a photo
 			headers: {
 					// convention for sending jwts, tokenService is imported above
 					Authorization: "Bearer " + tokenService.getToken() // < this is how we get the token from localstorage 
@@ -142,7 +142,7 @@ export default function FeedPage({loggedUser, handleLogout}) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-         {loading ? <h1>Loading.....</h1> : <PostFeed  posts={posts} itemsPerRow={1} isProfile={false} addLike={addLike} removeLike={removeLike} loggedUser={loggedUser}/> } 
+         {loading ? <h1>Loading.....</h1> : <RecipeFeed  recipes={recipes} itemsPerRow={1} isProfile={false} loggedUser={loggedUser}/> } 
         </Grid.Column>
       </Grid.Row>
     </Grid>
