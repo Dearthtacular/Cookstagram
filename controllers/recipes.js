@@ -53,32 +53,6 @@ function create(req, res) {
   })
 }
 
-// function deleteOne(req, res) {
-//   console.log(req.file, req.body, req.user)
-//   // check to make sure a file was sent over
-//   const filePath = `cookstagram/${uuidv4()}-${req.file.originalname}`
-//   const params = {Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer}
-//   // Upload our file to aws (request/response to aws)
-//   s3.upload(params, async function(err, data) {
-//     console.log("=======================");
-//     console.log(err, " err from aws");
-//     console.log("=======================");
-//     if (err) return res.status(400).json({ err: "Check Terminal error with AWS" });
-//     try {
-//         // then save our recipe to mongodb (request and response to mongodb)
-//       const recipe = await RecipeModel.create({
-//         caption: req.body.caption,
-//         user: req.user,
-//         photoUrl: data.Location,
-//       });
-//       await recipe.populate('user')
-//       res.status(201).json({ recipe });
-//     } catch (err) {
-//       res.status(400).json({ err });
-//     }
-//   })
-// }
-
 async function deleteOne(req, res) {
 
   try {
@@ -91,7 +65,7 @@ async function deleteOne(req, res) {
       console.log(data)
       if (err) return res.status(400).json({ err: "Check Terminal error with AWS" });
     })
-    // request and response to mongodb
+
     console.log(deletedRecipe)
     res.status(201).json({ msg: 'OK' });
   } catch (err) {
