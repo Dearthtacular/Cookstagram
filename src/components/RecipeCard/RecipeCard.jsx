@@ -43,10 +43,15 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
         <Card.Description>{recipe.caption}</Card.Description>
       </Card.Content>
       <Card.Content>
+        Ingredients:
         <Card.Description><pre className={"pre-style"}>{recipe.ingredients}</pre></Card.Description>
       </Card.Content>
-      <Card.Content extra textAlign={"right"}>
-        <Icon name={"heart"} size="large" onClick={clickHandler}/>
+      <Card.Content>
+        Instructions:
+        <Card.Description><pre className={"pre-style"}>{recipe.instructions}</pre></Card.Description>
+      </Card.Content >
+      <Card.Content extra textAlign={"left"} >
+        <Icon name={"trash alternate"} size="large" onClick={clickHandler}/>
       </Card.Content>
     </Card>
   );

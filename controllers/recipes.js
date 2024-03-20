@@ -35,6 +35,7 @@ function create(req, res) {
       const recipe = await RecipeModel.create({
         caption: req.body.caption,
         ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
         user: req.user,
         photoUrl: data.Location, // < this is from aws
       });

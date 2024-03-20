@@ -12,7 +12,7 @@ const likesSchema = mongoose.Schema({
 const recipeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   ingredients: String,
-  // instructions: [String],
+  instructions: String,
   photoUrl: String,
   caption: String,
   // One recipe has many likes, we are using embedding, because the likes will always be tied to the recipe, so no reason

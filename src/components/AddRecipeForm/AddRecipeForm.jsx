@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
 
-
 export default function AddPostForm({ handleAddPost }) {
 
   const [state, setState] = useState({
     caption: '',
-    ingredients: ''
+    ingredients: '',
+    instructions: ''
   })
 
   const [photo, setPhoto] = useState({})
@@ -22,13 +22,13 @@ export default function AddPostForm({ handleAddPost }) {
     })
   }
 
-  function handleKeyPress(e) {
+  function handleIngredientKeyPress(e) {
     if (e.key === 'Enter' && e.shiftKey === false) {
       e.preventDefault();
       const { name, value, selectionStart, selectionEnd } = e.target;
-      const startOfLine = value.lastIndexOf('\n', selectionStart - 1) + 1; 
-      const endOfLine = value.indexOf('\n', selectionEnd); 
-      const lineContent = value.substring(startOfLine, endOfLine === -1 ? value.length : endOfLine); 
+      const startOfLine = value.lastIndexOf('\n', selectionStart - 1) + 1;
+      const endOfLine = value.indexOf('\n', selectionEnd);
+      const lineContent = value.substring(startOfLine, endOfLine === -1 ? value.length : endOfLine);
       let newValue = '';
       if (startOfLine === 0) {
         newValue = '•\u00a0' + lineContent.trim() + '\n' + value.substring(endOfLine === -1 ? value.length : endOfLine);
@@ -39,11 +39,42 @@ export default function AddPostForm({ handleAddPost }) {
     }
   }
 
+  function handleInstructionKeyPress(e) {
+    if (e.key === 'Enter' && e.shiftKey === false) {
+      e.preventDefault();
+      const { name, value, selectionStart } = e.target;
+      const startOfLine = value.lastIndexOf('\n', selectionStart - 1) + 1;
+      const endOfLine = value.indexOf('\n', selectionStart);
+      const lineContent = value.substring(startOfLine, endOfLine === -1 ? value.length : endOfLine);
+      let newValue = '';
+  
+      // Extract all lines before the current line
+      const linesBefore = value.substring(0, startOfLine).split('\n');
+  
+      // Determine the current line number
+      const currentLineNumber = linesBefore.length;
+  
+      // Replace the bullet with the current line number
+      const lineNumberedContent = currentLineNumber + '.\u00a0' + lineContent.trim();
+  
+      // Construct the new value with the numbered line
+      newValue =
+        value.substring(0, startOfLine) +
+        lineNumberedContent +
+        '\n' +
+        value.substring(endOfLine === -1 ? value.length : endOfLine);
+  
+      handleChange({ target: { name, value: newValue } });
+    }
+  }
+  
+
   function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData()
     formData.append('caption', state.caption)
     formData.append('ingredients', state.ingredients)
+    formData.append('instructions', state.instructions)
     formData.append('photo', photo)
     handleAddPost(formData)
   }
@@ -55,7 +86,7 @@ export default function AddPostForm({ handleAddPost }) {
           className="form-control"
           name="caption"
           value={state.caption}
-          placeholder="What cookin' stuff you thinkin' about?"
+          placeholder="Recipe Title"
           onChange={handleChange}
           required
         />
@@ -63,9 +94,18 @@ export default function AddPostForm({ handleAddPost }) {
           className="form-control"
           name="ingredients"
           value={state.ingredients}
-          placeholder="Measurements and types.  You know the drill"
+          placeholder="Ingredients (press enter for new bulleted line)"
           onChange={handleChange}
-          onKeyDown={handleKeyPress} // Use onKeyDown event to detect Enter key
+          onKeyDown={handleIngredientKeyPress}
+          required
+        />
+        <Form.TextArea
+          className="form-control"
+          name="instructions"
+          value={state.instructions}
+          placeholder="Instructions (press enter for new numbered line)"
+          onChange={handleChange}
+          onKeyDown={handleInstructionKeyPress}
           required
         />
         <Form.Input
