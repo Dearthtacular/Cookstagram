@@ -40,7 +40,7 @@ export default function LoginPage({ handleSignUpOrLogin }) {
       // token in the app.js state
     } catch (err) {
       console.log(err);
-      setError("check terminal and console");
+      setError("Your email or password is incorrect.  Please try again or create a new account.");
     }
   }
 
@@ -80,11 +80,13 @@ export default function LoginPage({ handleSignUpOrLogin }) {
               Login
             </Button>
           </Segment>
-          <Message>
-            New to Us? <Link to="/signup">Sign up</Link>
-          </Message>
-          {error ? <ErrorMessage error={error} /> : null}
+          <Link to="/signup">
+          <Button className="btn">
+              Don't have an account? Sign up
+          </Button>
+          </Link>
         </Form>
+        {error ? <ErrorMessage error={error} /> : null}
       </Grid.Column>
     </Grid>
   );

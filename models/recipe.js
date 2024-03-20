@@ -11,7 +11,7 @@ const likesSchema = mongoose.Schema({
 // A recipe belongs to a User
 const recipeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  // ingredients: [String],
+  ingredients: String,
   // instructions: [String],
   photoUrl: String,
   caption: String,

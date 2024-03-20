@@ -1,5 +1,6 @@
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import '../RecipeCard/RecipeCard.css';
 
 
 
@@ -40,6 +41,9 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
       <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
       <Card.Content>
         <Card.Description>{recipe.caption}</Card.Description>
+      </Card.Content>
+      <Card.Content>
+        <Card.Description><pre className={"pre-style"}>{recipe.ingredients}</pre></Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={"right"}>
         <Icon name={"heart"} size="large" onClick={clickHandler}/>

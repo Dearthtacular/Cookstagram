@@ -34,6 +34,7 @@ function create(req, res) {
       // Using our model to create a document in the recipes collection in mongodb
       const recipe = await RecipeModel.create({
         caption: req.body.caption,
+        ingredients: req.body.ingredients,
         user: req.user,
         photoUrl: data.Location, // < this is from aws
       });
@@ -72,7 +73,6 @@ async function deleteOne(req, res) {
     console.log(err)
     res.status(400).json({ err });
   }
-
 }
 
 async function index(req, res) {

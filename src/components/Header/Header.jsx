@@ -24,6 +24,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             }
             avatar
           ></Image>
+          Profile
         </Link>
       </Header>
     </Segment>
