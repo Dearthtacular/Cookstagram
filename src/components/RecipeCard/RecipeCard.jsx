@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 
 
 
-export default function RecipeCard({ recipe, isProfile, addLike, removeLike, loggedUser }) {
+export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, loggedUser }) {
+
+  //
+  // removeLike = deleteRecipe
+  //
 
   // const likedIndex = recipe.likes.findIndex(like => like.username === loggedUser.username);
   // const likeColor = likedIndex > -1 ? 'red' : 'grey';
   // const clickHandler = likedIndex > -1 ? () => removeLike(recipe.likes[likedIndex]._id) : () => addLike(recipe._id)
+
+  console.log(recipe._id, 'THIS IS BEFORE THE ERROR IN RECIPECARD')
+  const clickHandler = () => deleteRecipe(recipe._id)
 
   return (
 
@@ -35,7 +42,7 @@ export default function RecipeCard({ recipe, isProfile, addLike, removeLike, log
         <Card.Description>{recipe.caption}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={"right"}>
-        <Icon name={"heart"} size="large" />
+        <Icon name={"heart"} size="large" onClick={clickHandler}/>
       </Card.Content>
     </Card>
   );

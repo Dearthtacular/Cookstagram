@@ -14,6 +14,8 @@ router.post('/', upload.single('photo'), recipesCtrl.create);
 // /api/recipes the index functions job is to return all of the recipes
 router.get('/', recipesCtrl.index)
 
+router.delete('/:recipeId', recipesCtrl.delete)
+
 
 
 /*---------- Protected Routes ----------*/

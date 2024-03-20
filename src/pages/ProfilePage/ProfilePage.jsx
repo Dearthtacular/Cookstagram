@@ -102,6 +102,28 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   //   }
   // }
 
+    async function deleteRecipe(recipeId){
+    console.log(recipeId, "THIS IS THE LOG BEFORE THE TRY IN THE DELETERECIPE FUNCTION")
+    try {
+      const response = await fetch(`/api/recipes/${recipeId}`, {
+        method: 'DELETE',
+        headers: {
+          // convention for sending jwts in a fetch request
+          Authorization: "Bearer " + tokenService.getToken(),
+          // We send the token, so the server knows who is making the
+          // request
+        } 
+      })
+
+      const data = await response.json()
+      console.log(data, ' response from delete recipe')
+      getProfileInfo(); // call getPosts to sync you data and update state
+      // so the like is removed from the array 
+    } catch(err){
+      console.log(err)
+    }
+  }
+
   if (error) {
     return (
       <>
@@ -134,8 +156,8 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column style={{ maxWidth: 750 }}>
-         <RecipeFeed itemsPerRow={3} isProfile={true} recipes={recipes} loggedUser={loggedUser}/> 
-        
+         <RecipeFeed itemsPerRow={3} isProfile={true} recipes={recipes} deleteRecipe={deleteRecipe} loggedUser={loggedUser}/> 
+
         </Grid.Column>
       </Grid.Row>
     </Grid>

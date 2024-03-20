@@ -1,12 +1,21 @@
 import RecipeCard from '../RecipeCard/RecipeCard'
 import { Card } from 'semantic-ui-react'
 
-export default function RecipeFeed({recipes, itemsPerRow, isProfile, addLike, removeLike, loggedUser}){
+export default function RecipeFeed({recipes, itemsPerRow, isProfile, addLike, deleteRecipe, loggedUser}){
+
+  //
+  // removeLike = deleteRecipe
+  //
+
         console.log(recipes[0].caption, ' < This is recipes[0].caption')
 	
 		const recipeCards = recipes.map((recipe) => {
-			return <RecipeCard recipe={recipe} key={recipe._id} isProfile={isProfile} addLike={addLike} removeLike={removeLike} loggedUser={loggedUser}/> 
+			return <RecipeCard recipe={recipe} key={recipe._id} isProfile={isProfile} addLike={addLike} deleteRecipe={deleteRecipe} loggedUser={loggedUser}/> 
 		})
+
+		//
+  		// removeLike = deleteRecipe
+  		//
 	
 		return (
 		   <Card.Group itemsPerRow={itemsPerRow}>
