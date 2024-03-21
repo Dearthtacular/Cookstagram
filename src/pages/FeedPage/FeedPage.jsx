@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import RecipeFeed from '../../components/RecipeFeed/RecipeFeed';
 import Header from "../../components/Header/Header";
-import AddPostForm from "../../components/AddRecipeForm/AddRecipeForm";
+import AddRecipeForm from "../../components/AddRecipeForm/AddRecipeForm";
 
 import { Grid } from "semantic-ui-react";
 
@@ -18,7 +18,7 @@ export default function FeedPage({loggedUser, handleLogout}) {
   // this is where we will define the api calls, 
   // because when they finish we need to update state
   // to reflect whatever CRUD operation we just performed
-  async function handleAddPost(recipeToSendToServer){
+  async function handleAddRecipe(recipeToSendToServer){
 	console.log(recipeToSendToServer, " formData from addPost form")
 
 	try {
@@ -137,7 +137,7 @@ export default function FeedPage({loggedUser, handleLogout}) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <AddPostForm  handleAddPost={handleAddPost}/>
+          <AddRecipeForm  handleAddRecipe={handleAddRecipe}/>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

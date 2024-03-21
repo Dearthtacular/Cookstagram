@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
 
-export default function AddPostForm({ handleAddPost }) {
+export default function AddRecipeForm({ handleAddRecipe }) {
 
   const [state, setState] = useState({
     caption: '',
@@ -76,7 +76,7 @@ export default function AddPostForm({ handleAddPost }) {
     formData.append('ingredients', state.ingredients)
     formData.append('instructions', state.instructions)
     formData.append('photo', photo)
-    handleAddPost(formData)
+    handleAddRecipe(formData)
   }
 
   return (

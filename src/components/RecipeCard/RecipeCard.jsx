@@ -1,10 +1,17 @@
-import { Card, Icon, Image } from "semantic-ui-react";
+import { useState } from 'react'
+import { Card, Icon, Image, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import '../RecipeCard/RecipeCard.css';
 
 
-
 export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, loggedUser }) {
+
+  const [fullRecipe, setFullRecipe] = useState(false)
+
+  const toggleRecipe = (e) => { 
+    e.preventDefault()
+    setFullRecipe(!fullRecipe) 
+  }
 
   //
   // removeLike = deleteRecipe
@@ -18,41 +25,52 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
   const clickHandler = () => deleteRecipe(recipe._id)
 
   return (
+      <Card>
+        {isProfile ? null : (
+          <Card.Content textAlign="left">
+            <Link to={`/${recipe.user.username}`}>
+              <Image
+                floated="left"
+                size="large"
+                avatar
+                src={
+                  recipe.user.photoUrl
+                    ? recipe.user.photoUrl
+                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                }
+              />
+              <Card.Header floated="right">{recipe.user.username}</Card.Header>
+            </Link>
+          </Card.Content>
+        )}
 
-    <Card>
-      {isProfile ? null : (
-        <Card.Content textAlign="left">
-          <Link to={`/${recipe.user.username}`}>
-            <Image
-              floated="left"
-              size="large"
-              avatar
-              src={
-                recipe.user.photoUrl
-                  ? recipe.user.photoUrl
-                  : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-              }
-            />
-            <Card.Header floated="right">{recipe.user.username}</Card.Header>
-          </Link>
+        <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
+        <Card.Content>
+          <Card.Description>{recipe.caption}</Card.Description>
+          </Card.Content>
+      <Card.Content>
+        <Card.Description>
+          <a href="#" onClick={toggleRecipe}>
+            {fullRecipe ? 'Hide Recipe' : 'Show Recipe'}
+          </a>
+        </Card.Description>
+        {fullRecipe && (
+          <>
+            <Card.Description>
+              <strong>Ingredients:</strong>
+              <pre className={"pre-style"}>{recipe.ingredients}</pre>
+            </Card.Description>
+            <Card.Description>
+              <strong>Instructions:</strong>
+              <pre className={"pre-style"}>{recipe.instructions}</pre>
+            </Card.Description>
+          </>
+        )}
+      </Card.Content>
+        <Card.Content extra textAlign={"left"} >
+          <Icon name={"trash alternate"} size="large" color="red" onClick={clickHandler} />
         </Card.Content>
-      )}
+      </Card>
 
-      <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
-      <Card.Content>
-        <Card.Description>{recipe.caption}</Card.Description>
-      </Card.Content>
-      <Card.Content>
-        Ingredients:
-        <Card.Description><pre className={"pre-style"}>{recipe.ingredients}</pre></Card.Description>
-      </Card.Content>
-      <Card.Content>
-        Instructions:
-        <Card.Description><pre className={"pre-style"}>{recipe.instructions}</pre></Card.Description>
-      </Card.Content >
-      <Card.Content extra textAlign={"left"} >
-        <Icon name={"trash alternate"} size="large" onClick={clickHandler}/>
-      </Card.Content>
-    </Card>
   );
 }
