@@ -8,9 +8,9 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
 
   const [fullRecipe, setFullRecipe] = useState(false)
 
-  const toggleRecipe = (e) => { 
+  const toggleRecipe = (e) => {
     e.preventDefault()
-    setFullRecipe(!fullRecipe) 
+    setFullRecipe(!fullRecipe)
   }
 
   //
@@ -25,29 +25,29 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
   const clickHandler = () => deleteRecipe(recipe._id)
 
   return (
-      <Card>
-        {isProfile ? null : (
-          <Card.Content textAlign="left">
-            <Link to={`/${recipe.user.username}`}>
-              <Image
-                floated="left"
-                size="large"
-                avatar
-                src={
-                  recipe.user.photoUrl
-                    ? recipe.user.photoUrl
-                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-                }
-              />
-              <Card.Header floated="right">{recipe.user.username}</Card.Header>
-            </Link>
-          </Card.Content>
-        )}
+    <Card>
+      {!isProfile && (
+        <Card.Content textAlign="left">
+          <Link to={`/${recipe.user.username}`}>
+            <Image
+              floated="left"
+              size="large"
+              avatar
+              src={
+                recipe.user.photoUrl
+                  ? recipe.user.photoUrl
+                  : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+              }
+            />
+            <Card.Header floated="right">{recipe.user.username}</Card.Header>
+          </Link>
+        </Card.Content>
+      )}
 
-        <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
-        <Card.Content>
-          <Card.Description>{recipe.caption}</Card.Description>
-          </Card.Content>
+      <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
+      <Card.Content>
+        <Card.Description>{recipe.caption}</Card.Description>
+      </Card.Content>
       <Card.Content>
         <Card.Description>
           <a href="#" onClick={toggleRecipe}>
@@ -67,10 +67,13 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
           </>
         )}
       </Card.Content>
+
+      {isProfile && (
         <Card.Content extra textAlign={"left"} >
           <Icon name={"trash alternate"} size="large" color="red" onClick={clickHandler} />
         </Card.Content>
-      </Card>
+      )}
+    </Card>
 
   );
 }
