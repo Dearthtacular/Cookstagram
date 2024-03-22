@@ -17,7 +17,7 @@ export default function AddRecipeForm({ handleAddRecipe }) {
   }
 
   function handleChange(e) {
-    setState({
+    setState({     
       ...state,
       [e.target.name]: e.target.value
     })
