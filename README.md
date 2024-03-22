@@ -1,42 +1,49 @@
+# [Cookstagram](https://cookstagram.onrender.com/)
 
-## Setup 
+Cookstagram is a simple yet effective MERN stack web application usable in modern browsers and was created using MongoDB, Mongoose, Express.js, Node.js, React, and AWS for functionality and Semantic UI for core element styling.
 
-1. Clone the repo `git clone https://github.com/Jimbojones1/Pupstagram-starter-with-login-signup.git` in your code folder
-2. Rename the folder to your Project, you can use the `mv` command like `mv Pupstagram-starter-with-login-signup yourprojectname`
-3. Delete the `.git` file. When you are in the root of the folder, you can press `ls -a` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+## Concept
 
+Cookstagram provides a social media experience centered around culinary exploration.  Upon logging in, users may create posts of the favorite recipes with data types including:
 
-#### Setup your git repo
+- Title
+- Image
+- Ingredients
+- Instructions
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2.  Then follow the directions on github that says ```…or create a new repository on the command line```
+Using this information, users create posts which are populated in the main feed of the application as well as each users profile page.
 
-it should look like this
+Users are able to remove delete posts using delete functionality from their logged in profile page.
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be
-git push -u origin main
-```
+>__Note__: Users must be logged in to use all features of the application.
 
-#### Setup the App
+## Instructions
 
-```npm install```
+The user signs up selecting a username, an email, a password, and completing a short bio as well as including a profile picture:
 
-*DOTENV*
+![image 1](https://i.imgur.com/Z0YiL7D.png)
 
-`touch .env`
+Upon creating an account, the user is logged in and may __create__ recipes to share with the world by filling out the RecipeAddForm.  With each ingridient and instruction, the user can press enter to begin a new line within the form field:
 
-add your variables (Don't forget to update your database name, as shown in the string below
+![image 2](https://i.imgur.com/yQy3dVy.png)
 
-```
-DATABASE_URL=mongodb+srv://jimbojones:W45BfQSBKq9vRKz2@cluster0.ktckmmi.mongodb.net/<your database name>?retryWrites=true&w=majority
-SECRET=SEIrocks!
-aws_access_key_id=yourkeygoeshere
-aws_secret_access_key=yourkeygoeshere
-S3_BUCKET=yourbucknamegoeshere
-```
+After clicking "Add Dish" at the bottom of the form, the users recipe is added to the feed along with all other recipes from all other users.  Be default, the actual recipe portion is hidden to conserve space.  Users may click the "Show More" tag to view the recipe in it's entirety
 
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+![image 3](https://i.imgur.com/VWrKz9U.png)
+![image 4](https://i.imgur.com/LLFuNdf.png)
+
+Users may visit their profile by clicking the link in the top left and view all of their own recipes as well as __delete__ any recipes they wish.  Delete functionality is only accessible form a users profile.
+
+![image 5](https://i.imgur.com/Wsgof7Q.png)
+
+## Icebox Items
+
+1. Search functionality by title, cuisine type, user, etc.
+
+2. Likes functionality
+
+3. Rating functionality
+
+## Credits
+
+<a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">Food and restaurant icons created by afif fudin - Flaticon</a>
