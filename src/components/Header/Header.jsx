@@ -7,9 +7,6 @@ export default function PageHeader({ loggedUser, handleLogout }) {
   return (
     <Segment clearing>
       <Header as="h2" floated="right">
-        <Link to="/">
-          <Icon name="home"></Icon>
-        </Link>
         <Link to="" onClick={handleLogout}>
           Logout
         </Link>
@@ -25,6 +22,9 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             avatar
           ></Image>
           Profile
+        </Link>
+        <Link to="/">
+        {'\u00a0 \u00a0 Main Feed'}
         </Link>
       </Header>
     </Segment>
