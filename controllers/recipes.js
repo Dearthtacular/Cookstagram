@@ -33,7 +33,7 @@ function create(req, res) {
       // then save our recipe to mongodb (request and response to mongodb)
       // Using our model to create a document in the recipes collection in mongodb
       const recipe = await RecipeModel.create({
-        caption: req.body.caption,
+        title: req.body.title,
         ingredients: req.body.ingredients,
         instructions: req.body.instructions,
         user: req.user,

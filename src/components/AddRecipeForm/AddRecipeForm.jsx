@@ -4,12 +4,13 @@ import { Button, Form, Segment } from 'semantic-ui-react'
 export default function AddRecipeForm({ handleAddRecipe }) {
 
   const [state, setState] = useState({
-    caption: '',
+    title: '',
     ingredients: '',
     instructions: ''
   })
 
   const [photo, setPhoto] = useState({})
+  const [key, setKey] = useState(0);
 
   function handleFileInput(e) {
     setPhoto(e.target.files[0])
@@ -72,11 +73,18 @@ export default function AddRecipeForm({ handleAddRecipe }) {
   function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData()
-    formData.append('caption', state.caption)
+    formData.append('title', state.title)
     formData.append('ingredients', state.ingredients)
     formData.append('instructions', state.instructions)
     formData.append('photo', photo)
     handleAddRecipe(formData)
+    setState({
+      title: '',
+      ingredients: '',
+      instructions: ''
+    })
+    setPhoto({})
+    setKey(prevKey => prevKey + 1);
   }
 
   return (
@@ -84,8 +92,8 @@ export default function AddRecipeForm({ handleAddRecipe }) {
       <Form autoComplete="off" onSubmit={handleSubmit}>
         <Form.Input
           className="form-control"
-          name="caption"
-          value={state.caption}
+          name="title"
+          value={state.title}
           placeholder="Recipe Title"
           onChange={handleChange}
           required
@@ -109,6 +117,7 @@ export default function AddRecipeForm({ handleAddRecipe }) {
           required
         />
         <Form.Input
+          key={key}
           className="form-control"
           type="file"
           name="photo"

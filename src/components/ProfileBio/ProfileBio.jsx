@@ -13,7 +13,7 @@ function ProfileBio({user}) {
            <h3>{user.username}</h3>
         </Segment>
         <Segment>
-           <span> Bio: {user.bio}</span>
+           <span> About me: {user.bio}</span>
         </Segment>
           
       </Grid.Column>

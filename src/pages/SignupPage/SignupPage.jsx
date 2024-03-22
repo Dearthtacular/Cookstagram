@@ -2,19 +2,19 @@ import { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import {
-	Button,
-	Form,
-	Grid,
-	Header,
-	Image,
-	Segment,
-  } from "semantic-ui-react";
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Segment,
+} from "semantic-ui-react";
 
 // this hook allows us to navigate programatically
 import { useNavigate } from 'react-router-dom'
 import userService from "../../utils/userService";
 
-export default function SignUpPage({handleSignUpOrLogin}) {
+export default function SignUpPage({ handleSignUpOrLogin }) {
 
   const [error, setError] = useState('')
 
@@ -38,7 +38,7 @@ export default function SignUpPage({handleSignUpOrLogin}) {
     });
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
 
     // ===========================================
@@ -66,8 +66,8 @@ export default function SignUpPage({handleSignUpOrLogin}) {
 
 
     try {
-    // 2. Remove the headers on the fetch request (the browser) (in utils/signup)
-    // will automatically apply the correct multipart/formdata header
+      // 2. Remove the headers on the fetch request (the browser) (in utils/signup)
+      // will automatically apply the correct multipart/formdata header
       await userService.signup(formData); // userService is imported at top of file
       handleSignUpOrLogin();// this is destructred in the props
       // and it grabs the token from localstorage and sets the 
@@ -76,84 +76,105 @@ export default function SignUpPage({handleSignUpOrLogin}) {
       // Change the view to the home page!
       navigate('/');// navigate acceps a path defined by a route!
 
-    } catch(err){
+    } catch (err) {
       console.log(err.message, " <- this comes from tht throw in utils/signup")
-      setError('Check Your Terminal for errors!!!!!!!!!')
+      setError(
+        <span>
+          It looks like you already have an account! Go ahead and{' '}
+          <a href="#" onClick={() => navigate('/login')}>
+            login
+          </a>
+          .
+        </span>)
     }
 
 
 
 
-     // ===========================================
+    // ===========================================
   }
 
-  function handleFileInput(e){
-	console.log(e.target.files)
-	setPhoto(e.target.files[0])
+  function handleFileInput(e) {
+    console.log(e.target.files)
+    setPhoto(e.target.files[0])
   }
 
 
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="purple" textAlign="center">
-          <Image src="https://i.imgur.com/TM4eA5g.jpg" /> Sign Up
-        </Header>
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-          <Segment stacked>
-            <Form.Input
-              name="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={state.email}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              name="password"
-              type="password"
-              placeholder="password"
-              value={state.password}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              name="passwordConf"
-              type="password"
-              placeholder="Confirm Password"
-              value={state.passwordConf}
-              onChange={handleChange}
-              required
-            />
-            <Form.TextArea
-              label="bio"
-              name="bio"
-              value={state.bio}
-              placeholder="Tell us more about your dogs..."
-              onChange={handleChange}
-            />
-            <Form.Field>
+    <div>
+      <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h2" color="purple" textAlign="center">
+            <Image src={"https://i.imgur.com/0qjE1Q5.png"} /> Create an Account
+          </Header>
+          <Form autoComplete="off" onSubmit={handleSubmit}>
+            <Segment stacked>
               <Form.Input
-                type="file"
-                name="photo"
-                placeholder="upload image"
-                onChange={handleFileInput}
+                name="username"
+                placeholder="username"
+                value={state.username}
+                onChange={handleChange}
+                required
               />
-            </Form.Field>
-            <Button type="submit" className="btn">
-              Signup
-            </Button>
-          </Segment>
-          {error ? <ErrorMessage error={error} /> : null}
-        </Form>
+              <Form.Input
+                type="email"
+                name="email"
+                placeholder="email"
+                value={state.email}
+                onChange={handleChange}
+                required
+              />
+              <Form.Input
+                name="password"
+                type="password"
+                placeholder="password"
+                value={state.password}
+                onChange={handleChange}
+                required
+              />
+              <Form.Input
+                name="passwordConf"
+                type="password"
+                placeholder="Confirm Password"
+                value={state.passwordConf}
+                onChange={handleChange}
+                required
+              />
+              <Form.TextArea
+                label="About you"
+                name="bio"
+                value={state.bio}
+                placeholder="What do you like to cook and eat?"
+                onChange={handleChange}
+              />
+              <Form.Field>
+                <Button className="custom-file-upload">
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    name="photo"
+                    style={{ display: 'none' }}
+                    onChange={handleFileInput}
+                  />
+                  <label htmlFor="fileUpload" className="custom-file-button">
+                    Select a Profile Picture
+                  </label>
+                </Button>
+              </Form.Field>
+              <hr></hr>
+              <Button type="submit" className="btn">
+                Signup
+              </Button>
+            </Segment>
+            {error ? <ErrorMessage error={error} /> : null}
+          </Form>
+        </Grid.Column>
+
+      </Grid>
+      <Grid.Column width={16}>
+        <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">Food and restaurant icons created by afif fudin - Flaticon</a>
       </Grid.Column>
-    </Grid>
+    </div>
   );
 }
+

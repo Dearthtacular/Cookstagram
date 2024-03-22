@@ -46,7 +46,7 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
 
       <Image src={`${recipe.photoUrl}`} wrapped ui={false} />
       <Card.Content>
-        <Card.Description>{recipe.caption}</Card.Description>
+        <Card.Description>{recipe.title}</Card.Description>
       </Card.Content>
       <Card.Content>
         <Card.Description>
