@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import '../RecipeCard/RecipeCard.css';
 
 
-export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, loggedUser }) {
+export default function RecipeCard({ recipe, isProfile, deleteRecipe }) {
 
   const [fullRecipe, setFullRecipe] = useState(false)
 
@@ -12,14 +12,6 @@ export default function RecipeCard({ recipe, isProfile, addLike, deleteRecipe, l
     e.preventDefault()
     setFullRecipe(!fullRecipe)
   }
-
-  //
-  // removeLike = deleteRecipe
-  //
-
-  // const likedIndex = recipe.likes.findIndex(like => like.username === loggedUser.username);
-  // const likeColor = likedIndex > -1 ? 'red' : 'grey';
-  // const clickHandler = likedIndex > -1 ? () => removeLike(recipe.likes[likedIndex]._id) : () => addLike(recipe._id)
 
   console.log(recipe._id, 'THIS IS BEFORE THE ERROR IN RECIPECARD')
   const clickHandler = () => deleteRecipe(recipe._id)

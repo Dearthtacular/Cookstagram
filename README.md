@@ -36,6 +36,10 @@ Users may visit their profile by clicking the link in the top left and view all 
 
 ![image 5](https://i.imgur.com/Wsgof7Q.png)
 
+## Planning
+
+### [Trello](https://trello.com/b/OgbAYMdY/cookstagram-project-3)
+
 ## Icebox Items
 
 1. Search functionality by title, cuisine type, user, etc.
@@ -43,6 +47,8 @@ Users may visit their profile by clicking the link in the top left and view all 
 2. Likes functionality
 
 3. Rating functionality
+ 
+4. Edit functionality
 
 ## Credits
 
