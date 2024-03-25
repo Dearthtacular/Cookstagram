@@ -50,6 +50,8 @@ Users may visit their profile by clicking the link in the top left and view all 
  
 4. Edit functionality
 
+5. Image preview prior to upload
+
 ## Credits
 
 <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">Food and restaurant icons created by afif fudin - Flaticon</a>

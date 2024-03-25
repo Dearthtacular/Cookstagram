@@ -66,6 +66,5 @@ export default function RecipeCard({ recipe, isProfile, deleteRecipe }) {
         </Card.Content>
       )}
     </Card>
-
   );
 }
