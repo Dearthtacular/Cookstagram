@@ -1,6 +1,6 @@
 # [Cookstagram](https://cookstagram.onrender.com/)
 
-Cookstagram is a simple yet effective MERN stack web application usable in modern browsers and was created using MongoDB, Mongoose, Express.js, Node.js, React, and AWS for functionality and Semantic UI for core element styling.
+Cookstagram is a simple yet effective MERN stack web application usable in modern browsers and was created using MongoDB, Mongoose, Express.js, Node.js, React, and AWS for functionality, jwt for authentication, and Semantic UI for core element styling.
 
 ## Concept
 
